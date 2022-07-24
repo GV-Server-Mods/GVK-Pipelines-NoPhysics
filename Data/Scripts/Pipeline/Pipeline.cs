@@ -356,12 +356,12 @@ namespace Klime.Pipeline
                     //MyPhysicsHelper.InitBoxPhysics(test_chunk.chunk, MyStringHash.GetOrCompute("Ammo"), new Vector3(0, 5, 0), new Vector3(5, 5, 0), 0f, 0f, 0f, 15, rbf);
                     //test_chunk.chunk.Physics.Enabled = true;
                     //test_chunk.chunk.Physics.Activate();
-                    foreach (var ent in allChunks)
-                    {
-                        MyPhysicsHelper.InitModelPhysics(ent.chunk, RigidBodyFlag.RBF_STATIC, 15);
-                        ent.chunk.Physics.Enabled = true;
-                        ent.chunk.Physics.Activate();
-                    }
+                    // foreach (var ent in allChunks)
+                    // {
+                    //     MyPhysicsHelper.InitModelPhysics(ent.chunk, RigidBodyFlag.RBF_STATIC, 15);
+                    //     ent.chunk.Physics.Enabled = true;
+                    //     ent.chunk.Physics.Activate();
+                    // }
                     //////newChunk.chunk.Physics.Enabled = true;
                     //////newChunk.chunk.GetPhysicsBody().Activate();
                     ////MyPhysicsHelper.InitBoxPhysics(newChunk.chunk, MyStringHash.GetOrCompute("Ammo"), new Vector3(5, 0, 0), new Vector3(1, 1, 1), 100, 0f, 0f, 9, RigidBodyFlag.RBF_DEFAULT);
