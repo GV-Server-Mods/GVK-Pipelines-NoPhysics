@@ -54,8 +54,8 @@ namespace Klime.Pipeline
         BlockState client_block_state = BlockState.Idle;
         List<IHitInfo> all_hits = new List<IHitInfo>();
         int timer = 0;
-        double search_radius = 1000;
-        double search_angle_tolerence = 0.2;
+        double search_radius = 2000;
+        double search_angle_tolerence = 0.2; //in radians, not degrees
         List<MyEntity> search_ents = new List<MyEntity>();
         List<IMyCargoContainer> search_onlycargo = new List<IMyCargoContainer>();
         Dictionary<IMyCargoContainer, Vector3D> search_Positions = new Dictionary<IMyCargoContainer, Vector3D>();
@@ -500,7 +500,7 @@ namespace Klime.Pipeline
                         {
                             MySimpleObjectDraw.DrawLine(cargo_block.WorldMatrix.Translation, cargo_block.WorldMatrix.Translation + cargo_block.WorldMatrix.Forward * 10, pipeline_mat,
                                 ref for_col, 0.1f, BlendTypeEnum.PostPP);
-                            MySimpleObjectDraw.DrawTransparentCone(ref cone_mat, 202.71f, 1000, ref search_col, 8, pipeline_mat);
+                            MySimpleObjectDraw.DrawTransparentCone(ref cone_mat, 405.4f, 2000, ref search_col, 8, pipeline_mat); //for 0.2 radians at 2km
                         }
                     }
                 }
