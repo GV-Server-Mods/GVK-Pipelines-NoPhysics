@@ -4,6 +4,19 @@
 		<Category xsi:type="MyObjectBuilder_GuiBlockCategoryDefinition">
 			<Id>
 				<TypeId>GuiBlockCategoryDefinition</TypeId>
+				<SubtypeId></SubtypeId>
+			</Id>
+			<DisplayName>GV Kharak Items</DisplayName>
+			<Name>GVK</Name>
+			<StrictSearch>false</StrictSearch>
+			<ItemIds>
+				<string>CargoContainer/Pipeline_Cargo</string>
+				<string>CargoContainer/Pipeline_Cargo</string>
+			</ItemIds>
+		</Category>
+		<Category xsi:type="MyObjectBuilder_GuiBlockCategoryDefinition">
+			<Id>
+				<TypeId>GuiBlockCategoryDefinition</TypeId>
 				<SubtypeId/>
 			</Id>
 			<DisplayName>   Utility</DisplayName>
