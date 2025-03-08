@@ -6,7 +6,7 @@
 				<TypeId>Inventory</TypeId>
 				<SubtypeId>Pipeline_Cargo</SubtypeId>
 			</Id>
-			<Size x="1.5" y="1.5" z="1.5"/>
+			<Size x="2.5" y="2.5" z="2.5"/>
 		</EntityComponent>
 	</EntityComponents>
 </Definitions>
