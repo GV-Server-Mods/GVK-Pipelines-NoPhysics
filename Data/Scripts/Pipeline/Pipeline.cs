@@ -49,11 +49,19 @@ namespace Klime.Pipeline
             AnimContinue,
             AnimEnd
         }
-        int randomTrigger = 0;
+        
         BlockState server_block_state = BlockState.Idle;
         BlockState client_block_state = BlockState.Idle;
         List<IHitInfo> all_hits = new List<IHitInfo>();
-        int timer = 0;
+        
+        int frame = 0;
+        int frameOffset = 0;
+        int updateInventoryPeriodFrames = 600; // 10 seconds
+        int failedSearches = 0;
+        int searchCooldownFrames = 0;
+        int searchCooldownFailMultiple = 200;
+        int searchCooldownMax = 1200; // 20 seconds
+
         double search_radius = 2000;
         double search_angle_tolerence = 0.2; //in radians, not degrees
         List<MyEntity> search_ents = new List<MyEntity>();
@@ -145,7 +153,7 @@ namespace Klime.Pipeline
 
                     if (MyAPIGateway.Session.IsServer)
                     {
-                        randomTrigger = MyUtils.GetRandomInt(60, 120);
+                        frameOffset = MyUtils.GetRandomInt(0, 59);
                     }
 
                     //if (!initControl)
@@ -416,6 +424,9 @@ namespace Klime.Pipeline
         {
             try
             {
+                frame++;
+                if (frame <= 0) frame = 0;
+
                 if (MyAPIGateway.Session.IsServer)
                 {
                     if (PipelineSession.Instance.readyToConnect)
@@ -423,7 +434,7 @@ namespace Klime.Pipeline
                         NeedsUpdate |= MyEntityUpdateEnum.EACH_100TH_FRAME;
                     }
 
-                    if (timer % randomTrigger == 0)
+                    if ( ((frame + frameOffset) % updateInventoryPeriodFrames ) == 0)
                     {
                         //Inventory logic
                         if (server_block_state == BlockState.Connected)
@@ -471,7 +482,7 @@ namespace Klime.Pipeline
 
                 if (!MyAPIGateway.Utilities.IsDedicated)
                 {
-                    if (timer % 120 == 0)
+                    if (frame % 120 == 0)
                     {
                         cone_mat = cargo_block.WorldMatrix;
 
@@ -504,7 +515,6 @@ namespace Klime.Pipeline
                         }
                     }
                 }
-                timer += 1;
             }
             catch (System.Exception e)
             {
@@ -528,10 +538,20 @@ namespace Klime.Pipeline
                 {
                     if (isOk(cargo_block))
                     {
-                        bool established_connection = DoSearch();
-                        if (established_connection)
+                        searchCooldownFrames -= 100;
+                        if (searchCooldownFrames <= 0 )
                         {
-                            server_block_state = BlockState.Connected;
+                            bool established_connection = DoSearch();
+                            if (established_connection)
+                            {
+                                server_block_state = BlockState.Connected;
+                                failedSearches = 0;
+                            }
+                            else
+                            {
+                                failedSearches++;
+                                searchCooldownFrames = Math.Min(failedSearches * searchCooldownFailMultiple, searchCooldownMax);
+                            }
                         }
                     }
                     else
