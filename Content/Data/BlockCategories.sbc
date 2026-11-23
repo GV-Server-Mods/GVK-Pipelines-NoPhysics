@@ -8,9 +8,8 @@
 			</Id>
 			<DisplayName>GV Kharak Items</DisplayName>
 			<Name>GVK</Name>
-			<StrictSearch>false</StrictSearch>
+			<StrictSearch>true</StrictSearch>
 			<ItemIds>
-				<string>CargoContainer/Pipeline_Cargo</string>
 				<string>CargoContainer/Pipeline_Cargo</string>
 			</ItemIds>
 		</Category>
@@ -23,7 +22,6 @@
 			<Name>GVK_Utility</Name>
 			<StrictSearch>true</StrictSearch>
 			<ItemIds>
-				<string>CargoContainer/Pipeline_Cargo</string>
 				<string>CargoContainer/Pipeline_Cargo</string>
 			</ItemIds>
 		</Category>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!-- Home tab: the pipeline cargo on Keen's cargo row (Y 21). Layout: GVK_Settings Docs/design/g-menu.md -->
+	<BlockPositions>
+		<BlockPosition>
+			<Name>Pipeline_Cargo</Name>
+			<Position>
+				<X>7</X>
+				<Y>21</Y>
+			</Position>
+		</BlockPosition>
+	</BlockPositions>
+</Definitions>
